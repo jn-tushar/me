@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jannatun Naeem Tushar — The Journey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Kalpurush&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1c1a14;
+      --paper: #f4edd8;
+      --gold: #c89b3c;
+      --gold-light: #e8c06a;
+      --green-deep: #1d3d2a;
+      --green-mid: #2e6647;
+      --green-light: #4a9465;
+      --red-accent: #b84444;
+      --cream: #fdf6e3;
+      --text-muted: #6b6245;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; opacity: .5;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 8vw;
+      gap: 4rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 80% 80% at 60% 40%,
+        rgba(46,102,71,.25) 0%,
+        rgba(28,26,20,0) 70%);
+    }
+
+    /* Decorative circle rings */
+    .hero-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(200,155,60,.12);
+      pointer-events: none;
+      animation: pulse-ring 6s ease-in-out infinite;
+    }
+    .hero-ring:nth-child(1){ width:600px;height:600px;right:-150px;top:50%;transform:translateY(-50%); }
+    .hero-ring:nth-child(2){ width:800px;height:800px;right:-250px;top:50%;transform:translateY(-50%); animation-delay:1.5s; }
+    .hero-ring:nth-child(3){ width:1000px;height:1000px;right:-350px;top:50%;transform:translateY(-50%); animation-delay:3s; }
+
+    @keyframes pulse-ring {
+      0%,100%{ opacity:.6; transform:translateY(-50%) scale(1); }
+      50%{ opacity:1; transform:translateY(-50%) scale(1.02); }
+    }
+
+    /* Floating Bengali letters */
+    .float-letters {
+      position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+    }
+    .float-letter {
+      position: absolute;
+      font-family: 'Kalpurush', serif;
+      font-size: 5rem;
+      color: rgba(200,155,60,.06);
+      animation: drift linear infinite;
+    }
+    @keyframes drift {
+      from { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      to { transform: translateY(-10vh) rotate(30deg); opacity: 0; }
+    }
+
+    .hero-text {
+      position: relative; z-index: 2;
+      animation: slide-up .9s cubic-bezier(.22,.61,.36,1) both;
+    }
+    @keyframes slide-up {
+      from{ opacity:0; transform:translateY(40px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+
+    .hero-label {
+      font-size: .8rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .hero-label::before {
+      content: '';
+      display: block; width: 2rem; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      margin-bottom: .5rem;
+    }
+    .hero-name span {
+      display: block;
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, #a07020 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-bangla {
+      font-family: 'Kalpurush', serif;
+      font-size: 1.4rem;
+      color: rgba(244,237,216,.5);
+      margin-bottom: 1.5rem;
+      letter-spacing: .05em;
+    }
+
+    .hero-tagline {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: rgba(244,237,216,.75);
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .hero-badges {
+      display: flex; flex-wrap: wrap; gap: .6rem;
+    }
+    .badge {
+      padding: .3rem .85rem;
+      border: 1px solid rgba(200,155,60,.4);
+      border-radius: 2rem;
+      font-size: .78rem;
+      letter-spacing: .08em;
+      color: var(--gold-light);
+      background: rgba(200,155,60,.08);
+      transition: all .25s;
+    }
+    .badge:hover {
+      background: rgba(200,155,60,.2);
+      border-color: var(--gold);
+    }
+
+    /* Photo */
+    .hero-photo-wrap {
+      position: relative; z-index: 2;
+      display: flex; justify-content: center;
+      animation: slide-up .9s .2s cubic-bezier(.22,.61,.36,1) both;
+    }
+    .photo-frame {
+      position: relative;
+      width: 340px; height: 420px;
+    }
+    .photo-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 4px;
+      filter: sepia(.15) brightness(.9) contrast(1.05);
+      display: block;
+    }
+    .photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: -10px -10px 10px 10px;
+      border: 1px solid rgba(200,155,60,.35);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+    .photo-frame::after {
+      content: '';
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 120px; height: 120px;
+      background: var(--green-deep);
+      border: 1px solid rgba(200,155,60,.2);
+      border-radius: 2px;
+      z-index: -1;
+    }
+    .photo-quote {
+      position: absolute;
+      bottom: -3rem; left: 50%;
+      transform: translateX(-50%);
+      background: var(--green-deep);
+      border: 1px solid rgba(200,155,60,.3);
+      border-radius: 4px;
+      padding: .6rem 1.2rem;
+      font-size: .78rem;
+      font-style: italic;
+      color: var(--gold-light);
+      white-space: nowrap;
+      letter-spacing: .03em;
+    }
+
+    /* ── SECTION COMMON ── */
+    section {
+      position: relative; z-index: 1;
+      padding: 7rem 8vw;
+    }
+
+    .section-eyebrow {
+      font-size: .75rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .75rem;
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .section-eyebrow::before {
+      content: ''; display: block;
+      width: 1.5rem; height: 1px; background: var(--gold);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 3rem;
+      color: var(--paper);
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,155,60,.3), transparent);
+      position: relative; z-index: 1;
+    }
+
+    /* ── ACHIEVEMENTS / TIMELINE ── */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: .5rem; bottom: .5rem;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--gold), rgba(200,155,60,.1));
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 3rem 2.5rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all .6s ease;
+    }
+    .timeline-item.visible {
+      opacity: 1; transform: translateX(0);
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: -6px; top: .5rem;
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      background: var(--ink);
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 12px rgba(200,155,60,.4);
+    }
+    .timeline-year {
+      font-size: .75rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .3rem;
+    }
+    .timeline-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: .4rem;
+      color: var(--paper);
+    }
+    .timeline-desc {
+      font-size: 1rem;
+      color: rgba(244,237,216,.65);
+      line-height: 1.65;
+      max-width: 560px;
+    }
+    .timeline-trophy {
+      font-size: 1.4rem;
+      display: inline-block;
+      margin-right: .4rem;
+      vertical-align: middle;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-card {
+      border: 1px solid rgba(200,155,60,.18);
+      border-radius: 6px;
+      padding: 1.8rem;
+      background: rgba(46,102,71,.07);
+      position: relative;
+      overflow: hidden;
+      transition: all .3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .skill-card.visible {
+      opacity: 1; transform: translateY(0);
+    }
+    .skill-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+    .skill-card:hover {
+      border-color: rgba(200,155,60,.4);
+      background: rgba(46,102,71,.12);
+      transform: translateY(-4px);
+    }
+    .skill-icon { font-size: 2rem; margin-bottom: .75rem; }
+    .skill-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin-bottom: .4rem;
+    }
+    .skill-desc {
+      font-size: .9rem;
+      color: rgba(244,237,216,.6);
+      line-height: 1.6;
+    }
+
+    /* ── DREAM SECTION ── */
+    .dream-section {
+      background: linear-gradient(135deg,
+        rgba(29,61,42,.5) 0%,
+        rgba(28,26,20,0) 60%);
+      border-top: 1px solid rgba(200,155,60,.1);
+      border-bottom: 1px solid rgba(200,155,60,.1);
+    }
+    .dream-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .dream-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .stat-box {
+      border: 1px solid rgba(200,155,60,.2);
+      border-radius: 6px;
+      padding: 1.5rem;
+      text-align: center;
+      background: rgba(28,26,20,.5);
+      opacity: 0;
+      transform: scale(.95);
+      transition: all .5s ease;
+    }
+    .stat-box.visible { opacity: 1; transform: scale(1); }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+      margin-bottom: .3rem;
+    }
+    .stat-label {
+      font-size: .8rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(244,237,216,.5);
+    }
+
+    /* ── QUOTE SECTION ── */
+    .quote-section {
+      text-align: center;
+      padding: 6rem 8vw;
+    }
+    .big-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--paper);
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+    }
+    .big-quote::before, .big-quote::after {
+      font-size: 5rem;
+      color: rgba(200,155,60,.2);
+      font-family: Georgia, serif;
+      line-height: 0;
+      vertical-align: -.4em;
+    }
+    .big-quote::before { content: '\201C'; margin-right: .1em; }
+    .big-quote::after { content: '\201D'; margin-left: .1em; }
+    .quote-attr {
+      font-size: .85rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── INTERESTS ── */
+    .interests-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .interest-chip {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .65rem 1.4rem;
+      border-radius: 3rem;
+      border: 1px solid rgba(200,155,60,.25);
+      background: rgba(200,155,60,.05);
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(244,237,216,.85);
+      transition: all .2s;
+      cursor: default;
+    }
+    .interest-chip:hover {
+      border-color: var(--gold);
+      background: rgba(200,155,60,.1);
+      color: var(--paper);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid rgba(200,155,60,.1);
+    }
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: .4rem;
+    }
+    .footer-sub {
+      font-size: .85rem;
+      color: rgba(244,237,216,.35);
+      letter-spacing: .1em;
+    }
+    .footer-links {
+      display: flex; justify-content: center; gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .footer-links a {
+      color: rgba(244,237,216,.4);
+      text-decoration: none;
+      font-size: .8rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── SCROLL PROGRESS BAR ── */
+    .progress-bar {
+      position: fixed; top: 0; left: 0; z-index: 100;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--green-light));
+      width: 0%;
+      transition: width .1s linear;
+    }
+
+    /* ── NAV DOTS ── */
+    .nav-dots {
+      position: fixed; right: 2rem; top: 50%;
+      transform: translateY(-50%); z-index: 50;
+      display: flex; flex-direction: column; gap: .7rem;
+    }
+    .nav-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(200,155,60,.3);
+      cursor: pointer;
+      transition: all .3s;
+    }
+    .nav-dot.active {
+      background: var(--gold);
+      box-shadow: 0 0 8px rgba(200,155,60,.6);
+      transform: scale(1.5);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; padding: 5rem 6vw 4rem; text-align: center; }
+      .hero-label { justify-content: center; }
+      .hero-badges { justify-content: center; }
+      .hero-photo-wrap { order: -1; }
+      .photo-frame { width: 240px; height: 300px; }
+      .dream-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .nav-dots { display: none; }
+    }
+
+    /* Animated background lines */
+    .bg-lines {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      overflow: hidden; opacity: .03;
+    }
+    .bg-line {
+      position: absolute; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* FADE IN UTILITY */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progress"></div>
+
+  <!-- Nav Dots -->
+  <nav class="nav-dots" id="navDots">
+    <div class="nav-dot active" data-target="hero" title="Home"></div>
+    <div class="nav-dot" data-target="achievements" title="Achievements"></div>
+    <div class="nav-dot" data-target="skills" title="Skills"></div>
+    <div class="nav-dot" data-target="dream" title="The Dream"></div>
+    <div class="nav-dot" data-target="interests" title="Interests"></div>
+  </nav>
+
+  <!-- Floating Bengali Letters -->
+  <div class="float-letters" aria-hidden="true"></div>
+
+  <!-- Background Lines -->
+  <div class="bg-lines" aria-hidden="true"></div>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-ring"></div>
+    <div class="hero-ring"></div>
+    <div class="hero-ring"></div>
+
+    <div class="hero-text">
+      <p class="hero-label">Population Scientist · Debate Champion · BCS Aspirant</p>
+
+      <h1 class="hero-name">
+        Jannatun Naeem
+        <span>Tushar</span>
+      </h1>
+
+      <p class="hero-bangla">জান্নাতুন নাঈম তুষার</p>
+
+      <p class="hero-tagline">
+        A son of a schoolmaster, a student of society, and a dreamer who knows
+        that every great story is built — one determined page at a time.
+      </p>
+
+      <div class="hero-badges">
+        <span class="badge">🎓 MSS · Population Science · JKKNIU</span>
+        <span class="badge">🏆 Regional Debate Champion '19</span>
+        <span class="badge">🌍 Demographer &amp; Public Health Researcher</span>
+        <span class="badge">🎯 BCS 51st Aspirant</span>
+        <span class="badge">📍 Mirpur-10, Dhaka</span>
+        <span class="badge">🗣️ বাংলা · English · Hindi · Urdu</span>
+      </div>
+    </div>
+
+    <div class="hero-photo-wrap">
+      <div class="photo-frame">
+        <img src="https://i.imgur.com/6wP9aMO.png" alt="Jannatun Naeem Tushar" />
+        <div class="photo-quote">"স্বপ্ন দেখো, লড়াই করো, জয়ী হও।"</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════ QUOTE ══════════════ -->
+  <section class="quote-section" id="quoteSection">
+    <div class="section-eyebrow fade-in">Words to live by</div>
+    <blockquote class="big-quote fade-in">
+      যদি তোর ডাক শুনে কেউ না আসে, তবে একলা চলো রে।
+    </blockquote>
+    <p class="quote-attr fade-in">— রবীন্দ্রনাথ ঠাকুর</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════ ACHIEVEMENTS ══════════════ -->
+  <section id="achievements" style="padding: 7rem 8vw;">
+    <div class="section-eyebrow">The road so far</div>
+    <h2 class="section-title">A Life Full of <em>Remarkable</em> Chapters</h2>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-year">2015</div>
+        <div class="timeline-title">
+          <span class="timeline-trophy">🌟</span>
+          SSC — Perfect GPA 5.00 / 5.00
+        </div>
+        <div class="timeline-desc">
+          Science group, Dhaka Board. When everyone else was content with good,
+          Tushar went for perfect — and got it. The first proof of what focus looks like
+          when it has somewhere to go.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2017</div>
+        <div class="timeline-title">
+          <span class="timeline-trophy">📘</span>
+          HSC — GPA 4.58 / 5.00
+        </div>
+        <div class="timeline-desc">
+          Science group, Dhaka Board. One chapter closed, a bigger one beginning —
+          the road from Gazipur to a university in Mymensingh, carrying nothing
+          but ambition and a father's quiet belief.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2019</div>
+        <div class="timeline-title">
+          <span class="timeline-trophy">🏆</span>
+          Champion — তারুণ্যের গণতন্ত্র বিতর্ক উৎসব
+        </div>
+        <div class="timeline-desc">
+          Among all the colleges and universities of the Mymensingh Region,
+          one voice rose above the rest. Organized by Democracy International,
+          USAID &amp; UKAID — this was the moment a debater became a champion.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2020</div>
+        <div class="timeline-title">
+          <span class="timeline-trophy">✍️</span>
+          Top-20 Essay — National Writing Competition
+        </div>
+        <div class="timeline-desc">
+          While the world was reeling from a pandemic, Tushar sat down and wrote
+          his vision for Bangladesh's recovery. The Government of Bangladesh
+          placed his essay in the Top 20 nationwide — a young mind, thinking beyond the crisis.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2022 – 2023</div>
+        <div class="timeline-title">
+          <span class="timeline-trophy">📖</span>
+          Founder &amp; Chief Organizer — Boiprahor Weekly Reading Circle
+        </div>
+        <div class="timeline-desc">
+          Not every revolution happens at a podium. Some begin with 30+ people
+          sitting together every week, reading, thinking, and questioning.
+          Tushar built that space — and then kept it alive.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2022 – 2024</div>
+        <div class="timeline-title">
+          <span class="timeline-trophy">🎙️</span>
+          Trainer — Presentation, Public Speaking &amp; Debate
+        </div>
+        <div class="timeline-desc">
+          A champion who chose to give back — running workshops for university students
+          on how to find their voice, hold a room, and argue with grace.
+          Because the best speakers are the ones who create more speakers.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2023 – 2024</div>
+        <div class="timeline-title">
+          <span class="timeline-trophy">🎤</span>
+          Founder &amp; Charter President — Population Science Debating Club, JKKNIU
+        </div>
+        <div class="timeline-desc">
+          There was no debate club for his department — so he built one.
+          50+ students found a platform for policy, argument, and civic thought.
+          That is what leaders do: they see the gap and fill it themselves.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2023</div>
+        <div class="timeline-title">
+          <span class="timeline-trophy">🔬</span>
+          Honours Thesis — Loneliness &amp; Older Adults, Trishal
+        </div>
+        <div class="timeline-desc">
+          A study that asked a quietly devastating question: what does loneliness
+          do to the body and mind of those we stop noticing?
+          The kind of research that comes not just from a mind, but from a heart
+          that actually cares.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2024</div>
+        <div class="timeline-title">
+          <span class="timeline-trophy">🎓</span>
+          MSS — Population Science, JKKNIU · CGPA 3.13 / 4.00
+        </div>
+        <div class="timeline-desc">
+          A thesis on NCDs among garment workers in Gazipur — where statistics
+          became stories, and data became the faces of people whose health
+          the system tends to overlook. Supervised by Dr. Md. Nuruzzaman Khan,
+          also a lecturer at the University of Newcastle, Australia.
+        </div>
+      </div>
+
+      <div class="timeline-item" style="padding-bottom: 0;">
+        <div class="timeline-year">NOW → 2027</div>
+        <div class="timeline-title">
+          <span class="timeline-trophy">🎯</span>
+          The Next Chapter — 51st BCS &amp; Beyond
+        </div>
+        <div class="timeline-desc">
+          Full-time, full-focus — the 51st BCS Preliminary in January 2027.
+          Every debate won, every thesis written, every student trained
+          was preparation for this. The civil service is waiting
+          for exactly this kind of person.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════ SKILLS ══════════════ -->
+  <section id="skills">
+    <div class="section-eyebrow">What I bring</div>
+    <h2 class="section-title">Skills &amp; <em>Strengths</em></h2>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <div class="skill-name">Data Analysis — STATA</div>
+        <div class="skill-desc">Advanced statistical analysis for population and social science research. Comfortable with complex datasets, cross-sectional studies, and evidence-based storytelling.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🎤</div>
+        <div class="skill-name">Public Speaking, Training &amp; Debate</div>
+        <div class="skill-desc">Regional champion-level debater and experienced trainer. Has conducted workshops for university students and a month-long teacher training program.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">✍️</div>
+        <div class="skill-name">Research &amp; Academic Writing</div>
+        <div class="skill-desc">Two cross-sectional theses on public health. Top-20 government essay. Skilled in quantitative research design, field surveys, and policy writing.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">💻</div>
+        <div class="skill-name">Tech — Coding &amp; Productivity</div>
+        <div class="skill-desc">HTML5, CSS3, Vibe Coding, Prompt Engineering, STATA 17, MS Excel, MS Office Suite, Google Sheets — a rare fusion of research rigour and digital fluency.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🤝</div>
+        <div class="skill-name">Leadership &amp; Community Building</div>
+        <div class="skill-desc">Founded two student organizations (60+ combined members), led reading circles, debate clubs, and served as a trainer across multiple institutions.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🗣️</div>
+        <div class="skill-name">Languages</div>
+        <div class="skill-desc">
+          <strong style="color:var(--gold-light)">Bengali</strong> — Native &nbsp;·&nbsp;
+          <strong style="color:var(--gold-light)">English</strong> — Fluent &nbsp;·&nbsp;
+          <strong style="color:var(--gold-light)">Hindi</strong> — Conversational &nbsp;·&nbsp;
+          <strong style="color:var(--gold-light)">Urdu</strong> — Conversational
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════ THE DREAM ══════════════ -->
+  <section class="dream-section" id="dream">
+    <div class="dream-inner">
+      <div>
+        <div class="section-eyebrow fade-in">The mission</div>
+        <h2 class="section-title fade-in">Chasing a <em>Dream</em><br/>Worth Every Sacrifice</h2>
+        <p style="color: rgba(244,237,216,.7); font-size: 1.05rem; line-height: 1.8; max-width: 440px;" class="fade-in">
+          The son of a retired schoolmaster from Sreepur, Gazipur —
+          who taught generations of children — now sets his sights on
+          serving the nation. The 51st BCS is not just an exam.
+          It is a calling. It is a promise to a family that believed.
+        </p>
+        <br />
+        <p style="color: rgba(244,237,216,.55); font-style: italic; font-size: .95rem; max-width: 400px;" class="fade-in">
+          "Once Tushar truly commits to something, he follows through."<br/>
+          — And he is committed.
+        </p>
+      </div>
+
+      <div class="dream-stat-grid">
+        <div class="stat-box">
+          <span class="stat-number">51st</span>
+          <span class="stat-label">BCS Target</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">2</span>
+          <span class="stat-label">Orgs Founded</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">60+</span>
+          <span class="stat-label">Students Led</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-number">Top 20</span>
+          <span class="stat-label">National Comp.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════ INTERESTS ══════════════ -->
+  <section id="interests" style="text-align: center;">
+    <div class="section-eyebrow" style="justify-content: center;">The human behind the resume</div>
+    <h2 class="section-title" style="margin-bottom: 1rem;">What <em>Moves</em> Him</h2>
+    <p style="color: rgba(244,237,216,.55); max-width: 500px; margin: 0 auto 3rem; font-style: italic; font-size: 1rem;">
+      Beyond the degrees and the debates, this is the person —
+      shaped by music, books, and the quiet pride of his roots.
+    </p>
+
+    <div class="interests-row">
+      <div class="interest-chip fade-in">🎵 রবীন্দ্র সঙ্গীত</div>
+      <div class="interest-chip fade-in">🎶 নজরুল গীতি</div>
+      <div class="interest-chip fade-in">🎸 Contemporary Bengali Music</div>
+      <div class="interest-chip fade-in">🎬 Bollywood Music</div>
+      <div class="interest-chip fade-in">📖 Reading &amp; Literature</div>
+      <div class="interest-chip fade-in">🎤 Competitive Debating</div>
+      <div class="interest-chip fade-in">🌿 Sreepur, Gazipur — Home</div>
+      <div class="interest-chip fade-in">👨‍👩‍👧 Family First</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════ CLOSING QUOTE ══════════════ -->
+  <section class="quote-section">
+    <div class="section-eyebrow fade-in" style="justify-content: center;">A message to himself</div>
+    <blockquote class="big-quote fade-in">
+      তুষার, তুমি যতটুকু ভাবো তার চেয়ে অনেক বেশি সক্ষম।
+      এই যাত্রা কঠিন, কিন্তু তুমি কঠিন মানুষ।
+    </blockquote>
+    <p class="quote-attr fade-in" style="margin-top: 1rem; font-style: italic; color: rgba(244,237,216,.45); font-size: .9rem; letter-spacing: 0;">
+      — Written with belief, for the best chapter yet to come.
+    </p>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer>
+    <div class="footer-name">Jannatun Naeem Tushar</div>
+    <div class="footer-sub">jntushar.jkkniu@gmail.com &nbsp;·&nbsp; +880 1717 916114 &nbsp;·&nbsp; Dhaka, Bangladesh</div>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/jannatun-naeem-tushar" target="_blank">LinkedIn</a>
+      <a href="mailto:jntushar.jkkniu@gmail.com">Email</a>
+    </div>
+    <div style="margin-top: 2rem; font-size: .75rem; color: rgba(244,237,216,.2); letter-spacing: .05em;">
+      MSS · Population Science · JKKNIU · 2024
+    </div>
+  </footer>
+
+  <script>
+    // ── Progress bar ──
+    const progressBar = document.getElementById('progress');
+    window.addEventListener('scroll', () => {
+      const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+      progressBar.style.width = pct + '%';
+    });
+
+    // ── Floating Bengali letters ──
+    const letters = ['ক', 'খ', 'গ', 'জ', 'ন', 'ম', 'স', 'র', 'ব', 'প', 'ত', 'ড', 'শ', 'হ', 'ল'];
+    const floatContainer = document.querySelector('.float-letters');
+    letters.forEach((letter, i) => {
+      const el = document.createElement('span');
+      el.className = 'float-letter';
+      el.textContent = letter;
+      el.style.left = (5 + Math.random() * 90) + '%';
+      el.style.animationDuration = (18 + Math.random() * 20) + 's';
+      el.style.animationDelay = (Math.random() * 20) + 's';
+      el.style.fontSize = (3 + Math.random() * 5) + 'rem';
+      floatContainer.appendChild(el);
+    });
+
+    // ── BG lines ──
+    const bgLines = document.querySelector('.bg-lines');
+    for (let i = 0; i < 8; i++) {
+      const line = document.createElement('div');
+      line.className = 'bg-line';
+      line.style.top = (10 + i * 12) + '%';
+      bgLines.appendChild(line);
+    }
+
+    // ── Intersection Observer for animations ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, idx) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const delay = el.dataset.delay || 0;
+          setTimeout(() => el.classList.add('visible'), delay);
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.timeline-item, .skill-card, .stat-box, .fade-in').forEach((el, i) => {
+      el.dataset.delay = (i % 4) * 100;
+      observer.observe(el);
+    });
+
+    // ── Nav dots ──
+    const sections = ['hero', 'achievements', 'skills', 'dream', 'interests'];
+    const dots = document.querySelectorAll('.nav-dot');
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        document.getElementById(sections[i])?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          const idx = sections.indexOf(id);
+          if (idx !== -1) {
+            dots.forEach(d => d.classList.remove('active'));
+            dots[idx]?.classList.add('active');
+          }
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) sectionObserver.observe(el);
+    });
+  </script>
+</body>
+</html>
